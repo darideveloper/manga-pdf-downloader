@@ -1,0 +1,67 @@
+{
+    "Shiver Junji Ito Selected Stories": {
+        "page": "https://mangapill.com/manga/5781/shiver-junji-ito-selected-stories",
+        "selector_link": "#chapters a",
+        "selector_image": "chapter-page picture > img"
+    },
+    "Tokyo Ghoul": {
+        "page": "https://mangapill.com/manga/4524/tokyo-ghoul",
+        "selector_link": "#chapters a",
+        "selector_image": "chapter-page picture > img"
+    },
+    "Tokyo Ghoul re": {
+        "page": "https://mangapill.com/manga/4526/tokyo-ghoul-re",
+        "selector_link": "#chapters a",
+        "selector_image": "chapter-page picture > img"
+    },
+    "Berserk": {
+        "page": "https://mangapill.com/manga/1/berserk",
+        "selector_link": "#chapters a",
+        "selector_image": "chapter-page picture > img"
+    },
+    "MoMo The Blood Taker": {
+        "page": "https://mangapill.com/manga/6690/momo-the-blood-taker",
+        "selector_link": "#chapters a",
+        "selector_image": "chapter-page picture > img"
+    },
+    "Ajin": {
+        "page": "https://mangapill.com/manga/148/ajin",
+        "selector_link": "#chapters a",
+        "selector_image": "chapter-page picture > img"
+    },
+    "Goth": {
+        "page": "https://mangapill.com/manga/6658/goth",
+        "selector_link": "#chapters a",
+        "selector_image": "chapter-page picture > img"
+    },
+    "Hideout": {
+        "page": "https://mangapill.com/manga/5229/hideout",
+        "selector_link": "#chapters a",
+        "selector_image": "chapter-page picture > img"
+    },
+    "Ibitsu": {
+        "page": "https://mangapill.com/manga/1868/ibitsu",
+        "selector_link": "#chapters a",
+        "selector_image": "chapter-page picture > img"
+    },
+    "Franken Fran": {
+        "page": "https://mangapill.com/manga/1228/franken-fran",
+        "selector_link": "#chapters a",
+        "selector_image": "chapter-page picture > img"
+    },
+    "MPD-Psycho": {
+        "page": "https://mangapill.com/manga/2980/mpd-psycho",
+        "selector_link": "#chapters a",
+        "selector_image": "chapter-page picture > img"
+    },
+    "Imawa no Kuni no Alice": {
+        "page": "https://mangapill.com/manga/1907/imawa-no-kuni-no-alice",
+        "selector_link": "#chapters a",
+        "selector_image": "chapter-page picture > img"
+    },
+    "Tomodachi Game": {
+        "page": "https://mangapill.com/manga/4540/tomodachi-game",
+        "selector_link": "#chapters a",
+        "selector_image": "chapter-page picture > img"
+    }
+}
