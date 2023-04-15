@@ -54,7 +54,7 @@ class MangaDownloader (WebScraping):
                 
                 # Open each chapter
                 self.set_page (chapter)
-                self.zoom (0.5)
+                self.zoom (0.1)
                 self.refresh_selenium ()
                 
                 print (f"\tChapter: {chapter}")
