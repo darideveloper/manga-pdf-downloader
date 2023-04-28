@@ -20,19 +20,18 @@ class MangaDownloader (WebScraping):
             self.mangas = json.load (file)
             
         # Start chrome
-        super().__init__ (headless=False)
+        super().__init__ (headless=True)
 
     def download (self):
         """ Download images from mangas in junji-ito.com/manga/ and save images in images folder
         """
         
         # Loop for each mange in settings
-        for manga_name, data in self.mangas.items ():
+        for manga_name, page in self.mangas.items():
             
-            # Get manga data
-            page = data["page"]
-            selector_image = data["selector_image"]
-            selector_link = data["selector_link"]
+            # css selectors
+            selector_image = "chapter-page picture > img"
+            selector_link = "#chapters a"
             
             print (f"Manga: {manga_name}")
             
@@ -52,12 +51,27 @@ class MangaDownloader (WebScraping):
                 
                 sleep (3)
                 
+                print (f"\tChapter: {chapter}")
+                
                 # Open each chapter
-                self.set_page (chapter)
+                page_loaded = False
+                for _ in range (3):
+                    try:
+                        self.set_page (chapter)
+                    except:
+                        sleep (5)
+                        continue
+                    else:
+                        page_loaded = True
+                        break
+                
+                if not page_loaded:
+                    print ("\t\tPage not loaded, skipping manga...")
+                    break
+                
+                # Zoom out to get all images
                 self.zoom (0.1)
                 self.refresh_selenium ()
-                
-                print (f"\tChapter: {chapter}")
                 
                 # download images
                 image_links = self.get_attribs (selector_image, "src")
@@ -90,15 +104,19 @@ class MangaDownloader (WebScraping):
     def create_pdf (self):
         """ Convert already downloaded images to pdf and save pdfs in pdfs folder
         """
-         
-        # Loop for each mange in settings
+        
         print ("Convering images to pdf...")
-        for manga_name, url in self.mangas.items ():
+        
+        # Get mangas folders from images folder
+        mangas_folders = os.listdir (self.images_folder)
+         
+        # Loop for each mange 
+        for manga in mangas_folders:
             
-            print (f"Creating pdf for: {manga_name}")
+            print (f"Creating pdf for: {manga}")
             
             # Get images from mangda folder 
-            current_images_folder = os.path.join (self.images_folder, manga_name)
+            current_images_folder = os.path.join (self.images_folder, manga)
             images = os.listdir (current_images_folder)
             images_paths = list(map(lambda image: os.path.join (current_images_folder, image), images))
                         
@@ -109,7 +127,7 @@ class MangaDownloader (WebScraping):
                 if image.mode == 'RGBA':
                     image = image.convert('RGB')
                 images.append (image)
-            output_file = os.path.join (self.pdfs_folder, f"{manga_name}.pdf")
+            output_file = os.path.join (self.pdfs_folder, f"{manga}.pdf")
             images[0].save(
                 output_file, "PDF" ,resolution=100.0, save_all=True, append_images=images
             )
