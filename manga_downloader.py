@@ -27,11 +27,15 @@ class MangaDownloader (WebScraping):
         """
         
         # Loop for each mange in settings
-        for manga_name, page in self.mangas.items():
+        for manga_name, data in self.mangas.items():
             
             # css selectors
             selector_image = "chapter-page picture > img"
             selector_link = "#chapters a"
+            
+            # Get data
+            manga_url = data["url"]
+            manga_start_at = data["start_at"]
             
             print (f"Manga: {manga_name}")
             
@@ -40,10 +44,16 @@ class MangaDownloader (WebScraping):
             os.makedirs (images_folder, exist_ok=True)
             
             # Load page 
-            self.set_page (page)
+            self.set_page (manga_url)
 
-            chapters = self.get_attribs (selector_link, "href")
+            chapters = self.driver.execute_script (f'links = []; document.querySelectorAll ("{selector_link}").forEach (link => links.push(link.getAttribute("href"))); return (links)')
             chapters.reverse ()
+            
+            # Filter chapters
+            chapters = chapters[manga_start_at:]
+            
+            # Fix url
+            chapters = list(map(lambda chapter: f"https://mangapill.com{chapter}", chapters))
             
             # Get images urls from all chapters
             image_counter = 0
