@@ -1,4 +1,10 @@
 {
-    "Oyasumi Punpun": "https://mangapill.com/manga/7/oyasumi-punpun",
-    "Tomodachi Game":  "https://mangapill.com/manga/4540/tomodachi-game"
+    "Vagabond": {
+        "url": "https://mangapill.com/manga/4/vagabond",
+        "start_at": 100
+    },
+    "Berserk": {
+        "url": "https://mangapill.com/manga/1/berserk",
+        "start_at": 0
+    }
 }
