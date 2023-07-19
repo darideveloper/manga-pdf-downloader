@@ -29,14 +29,13 @@ class MangaDownloader (WebScraping):
         # Loop for each mange in settings
         for manga_name, data in self.mangas.items():
             
-            # css selectors
-            selector_image = "chapter-page picture > img"
-            selector_link = "#chapters a"
-            
             # Get data
             manga_url = data["url"]
             manga_start_at = data["start_at"]
-            
+            selector_link = data["selector_link"]
+            selector_img = data["selector_img"]
+            img_attrib = data["img_attrib"]
+
             print (f"Manga: {manga_name}")
             
             # Create images folder if not exists 
@@ -53,7 +52,7 @@ class MangaDownloader (WebScraping):
             chapters = chapters[manga_start_at:]
             
             # Fix url
-            chapters = list(map(lambda chapter: f"https://mangapill.com{chapter}", chapters))
+            # chapters = list(map(lambda chapter: chapter, chapters))
             
             # Get images urls from all chapters
             image_counter = 0
@@ -84,7 +83,7 @@ class MangaDownloader (WebScraping):
                 self.refresh_selenium ()
                 
                 # download images
-                image_links = self.get_attribs (selector_image, "src")
+                image_links = self.get_attribs (selector_img, img_attrib)
 
                 for image_link in image_links:
                     
