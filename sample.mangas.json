@@ -5,5 +5,12 @@
         "selector_link": "li.wp-manga-chapter > a",
         "selector_img": ".page-break.no-gaps > img[data-src]",
         "img_attrib": "data-src"
+    },
+    "Saihate No Paladin": {
+        "url": "https://www.mangaread.org/manga/saihate-no-paladin/",
+        "start_at": 0,
+        "selector_link": "li.wp-manga-chapter > a",
+        "selector_img": ".page-break.no-gaps > img[data-src]",
+        "img_attrib": "src"
     }
 }
