@@ -149,16 +149,26 @@ class MangaDownloader (ChromDevWrapper):
                         
             # Convert to pdf
             images = []
+            corrupted_counter = 0
             for image_path in images_paths:
-                image = Image.open (image_path)
-                if image.mode == 'RGBA':
-                    image = image.convert('RGB')
-                images.append (image)
+                try:
+                    image = Image.open (image_path)
+                except:
+                    corrupted_counter += 1
+                else:
+                    if image.mode == 'RGBA':
+                        image = image.convert('RGB')
+                    images.append (image)
             output_file = os.path.join (self.pdfs_folder, f"{manga}.pdf")
             images[0].save(
                 output_file, "PDF" ,resolution=100.0, save_all=True, append_images=images
             )
             
+            if corrupted_counter:
+                print (f"\t{corrupted_counter} possible corrupted images")
+                
+            print (f"\t{len(images)} images converted to pdf")
+                
             # Close images
             for image in images:
                 image.close ()
